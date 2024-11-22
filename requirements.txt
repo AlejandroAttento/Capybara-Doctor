@@ -12,3 +12,5 @@ python-dotenv
 huggingface-hub
 jupyter
 ipywidgets
+protobuf
+accelerate
