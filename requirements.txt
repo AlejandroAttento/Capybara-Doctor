@@ -1,0 +1,10 @@
+ctransformers==0.2.5
+sentence-transformers==2.2.2
+pinecone-client
+langchain==0.0.225
+pypdf
+flask
+python-dotenv
+huggingface-hub
+jupyter
+ipywidgets
