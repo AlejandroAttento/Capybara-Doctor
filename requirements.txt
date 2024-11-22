@@ -1,6 +1,5 @@
 transformers
-ctransformers==0.2.5
-sentence-transformers==2.2.2
+sentence-transformers
 pinecone-client
 langchain
 langchain-community
@@ -14,3 +13,5 @@ jupyter
 ipywidgets
 protobuf
 accelerate
+
+-e .
