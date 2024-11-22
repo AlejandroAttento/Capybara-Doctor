@@ -1,4 +1,12 @@
 {
-    "model_repository_name": "TheBloke/Llama-2-7B-Chat-GGML",
-    "model_file_name": "llama-2-7b-chat.ggmlv3.q4_0.bin"
+    "llm_model_repository_name": "TheBloke/Llama-2-7B-Chat-GGML",
+    "llm_model_name": "llama-2-7b-chat.ggmlv3.q4_0.bin",
+    "embedding_model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "pinecone_index_name": "medical-llm-using-llama3",
+    "data_directory": "data/",
+    "llm_model_directory": "model/",
+    "text_split": {
+        "chunk_size": 500, 
+        "chunk_overlap": 50
+    }
 }
