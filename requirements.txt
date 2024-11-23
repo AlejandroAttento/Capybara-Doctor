@@ -7,6 +7,7 @@ langchain-pinecone
 langchain-huggingface
 pypdf
 flask
+Flask-Session
 python-dotenv
 huggingface-hub
 jupyter

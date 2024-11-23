@@ -1,5 +1,6 @@
 import json
 import hashlib
+from langchain.schema import AIMessage, HumanMessage
 
 
 class ConfigManager:
@@ -32,3 +33,18 @@ class ConfigManager:
 
 def generate_id(input):
     return hashlib.md5(input.encode()).hexdigest()
+
+def serialize_messages(messages):
+    serialized = []
+    for msg in messages:
+        serialized.append({"type": msg.type, "content": msg.content})
+    return serialized
+
+def deserialize_messages(serialized_messages):
+    messages = []
+    for msg in serialized_messages:
+        if msg['type'] == 'human':
+            messages.append(HumanMessage(content=msg['content']))
+        elif msg['type'] == 'ai':
+            messages.append(AIMessage(content=msg['content']))
+    return messages
