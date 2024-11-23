@@ -1,4 +1,6 @@
+import os
 import json
+import shutil
 import hashlib
 from langchain.schema import AIMessage, HumanMessage
 
@@ -48,3 +50,19 @@ def deserialize_messages(serialized_messages):
         elif msg['type'] == 'ai':
             messages.append(AIMessage(content=msg['content']))
     return messages
+
+def remove_all_in_directory(directory_path):
+    for item in os.listdir(directory_path):
+        item_path = os.path.join(directory_path, item)
+        try:
+            if os.path.isfile(item_path) or os.path.islink(item_path):
+                os.unlink(item_path)  # Remove file or symbolic link
+            elif os.path.isdir(item_path):
+                shutil.rmtree(item_path)  # Remove directory and all its contents
+        except Exception as e:
+            print(f"Failed to delete {item_path}. Reason: {e}")
+
+    # Wait until the directory is empty
+    while os.listdir(directory_path):
+        time.sleep(0.1)  # Sleep briefly to avoid busy waiting
+    print(f"All contents in '{directory_path}' have been deleted.")

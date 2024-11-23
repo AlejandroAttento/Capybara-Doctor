@@ -1,9 +1,10 @@
 {
-    "llm_model_repository_name": "meta-llama/Llama-3.2-1B",
+    "llm_model_repository_name": "meta-llama/Llama-3.2-1B-Instruct",
     "embedding_model_name": "sentence-transformers/all-MiniLM-L6-v2",
     "pinecone_index_name": "medical-llm-using-llama3",
     "data_directory": "data/",
     "llm_model_directory": "model/",
+    "llm_persistent_memory": "flask_session/",
     "text_split": {
         "chunk_size": 500, 
         "chunk_overlap": 50

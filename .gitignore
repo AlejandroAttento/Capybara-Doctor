@@ -1,6 +1,7 @@
 
 # Custom
-model/
+model/*
+flask_session/*
 
 # IDE specific
 .vscode/
