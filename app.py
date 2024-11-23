@@ -42,6 +42,14 @@ app = Flask(__name__)
 def index():
     return render_template("chat.html")
 
+@app.route("/get", methods=["GET", "POST"])
+def chat():
+    msg = request.form["msg"]
+    input = msg
+    result = qa({"query": input})
+    answer = result.get("result").split("__\nAnswer:")[-1]
+    return answer
+
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
