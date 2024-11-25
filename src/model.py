@@ -62,6 +62,9 @@ def hf_download_tokenizer(config_manager: ConfigManager):
             token=token,
         )
 
+        if tokenizer.pad_token_id is None:
+            tokenizer.pad_token_id = tokenizer.eos_token_id
+
         return tokenizer
         
     except Exception as e:

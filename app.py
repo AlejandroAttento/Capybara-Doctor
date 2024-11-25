@@ -2,25 +2,24 @@ import os
 import tempfile
 from flask import Flask, render_template, request, session
 from flask_session import Session
-from dotenv import load_dotenv
-from langchain.prompts import PromptTemplate, ChatPromptTemplate
-from langchain.prompts.chat import MessagesPlaceholder
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferWindowMemory
 from langchain.memory.chat_message_histories import ChatMessageHistory
-from langchain.schema import AIMessage, HumanMessage
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_pinecone import PineconeVectorStore
+from langchain.chains import create_retrieval_chain
+from pinecone import Pinecone
 from src.helper import ConfigManager, serialize_messages, deserialize_messages, remove_all_in_directory
 from src.model import hf_download_model, hf_download_tokenizer, load_local_model, hf_load_embeddings
-from src.prompt import qa_prompt
+from src.prompt import qa_prompt, output_cleanup_prompt
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone
+import logger # To initialize and generate logs
 
-# Load environment variables
-load_dotenv()
 
 # Initialize configuration manager and app key
-config_manager = ConfigManager("process_config.json")
+config_manager = ConfigManager("config.json")
 app_key = os.environ["FLASK_APP_KEY"]
 
 # Remove existing model directories
@@ -33,19 +32,14 @@ llm = load_local_model(config_manager, tokenizer)
 embeddings = hf_load_embeddings(config_manager)
 
 # Create the question-answering chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
 question_answer_chain = create_stuff_documents_chain(llm, qa_prompt)
 
 # Initialize Pinecone and the vector store
-from langchain_pinecone import PineconeVectorStore
-from pinecone import Pinecone
-
 pc = Pinecone(api_key=os.getenv("PINECONE_TOKEN"))
-index = pc.Index(config_manager.get_config("pinecone_index_name"))
+index = pc.Index(config_manager.get_config(["pinecone", "index_name"]))
 vector_db = PineconeVectorStore(index=index, embedding=embeddings)
 
 # Create the retrieval chain
-from langchain.chains import create_retrieval_chain
 rag_chain = create_retrieval_chain(
     vector_db.as_retriever(search_kwargs={"k": 3}),
     question_answer_chain
@@ -69,21 +63,17 @@ def index():
 
 @app.route("/get", methods=["GET", "POST"])
 def chat():
-    msg = request.form["msg"]
-    user_input = msg
+    user_input = request.form["msg"]
 
     if 'chat_history' not in session:
         session['chat_history'] = []
 
-    # Deserialize the chat history from the session
     chat_history_messages = deserialize_messages(session['chat_history'])
 
-    # Create a ChatMessageHistory object and set its messages
     chat_message_history = ChatMessageHistory()
     chat_message_history.messages = chat_history_messages
 
-    # Initialize the memory with the chat message history
-    memory = ConversationBufferMemory(chat_memory=chat_message_history, return_messages=True)
+    memory = ConversationBufferWindowMemory(chat_memory=chat_message_history, return_messages=True, k=3)
 
     # Get the result from the RAG chain
     result = rag_chain.invoke({"input": user_input, "chat_history": memory.chat_memory.messages})
@@ -97,11 +87,11 @@ def chat():
 
     # Serialize and save the chat history in the session
     session['chat_history'] = serialize_messages(memory.chat_memory.messages)
+    
+    clean_answer = llm.invoke(output_cleanup_prompt.format(llm_response=answer))
+    clean_answer = clean_answer.split("##Improved answer:##")[-1]
 
-    chatbot_answer = answer.split("### Medical expert response ###")[-1]
-    print(chatbot_answer)
-
-    return chatbot_answer
+    return clean_answer
 
 if __name__ == "__main__":
     app.run(

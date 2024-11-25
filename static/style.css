@@ -6,30 +6,33 @@ body,html{
 	background: linear-gradient(to right, rgb(38, 51, 61), rgb(50, 55, 65), rgb(33, 33, 78));
 }
 
-.chat{
-	margin-top: auto;
-	margin-bottom: auto;
+.chat {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 90%; /* Increase the width */
+    max-width: 850px; /* Set a maximum width */
+    height: 80vh; /* Set height as a percentage of the viewport height */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add a shadow for a modern look */
+    border-radius: 20px; /* Round the corners more */
 }
-.card{
-	height: 500px;
-	border-radius: 15px !important;
-	background-color: rgba(0,0,0,0.4) !important;
+.card {
+    height: 100%; /* Ensure the card fills the chat container */
+    border-radius: 20px !important;
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Slightly darker background */
 }
-.contacts_body{
-	padding:  0.75rem 0 !important;
-	overflow-y: auto;
-	white-space: nowrap;
+.msg_card_body {
+    overflow-y: auto;
+    height: calc(100% - 120px); /* Adjust height dynamically */
+    padding: 10px; /* Add some padding for better spacing */
 }
-.msg_card_body{
-	overflow-y: auto;
+.card-header {
+    border-radius: 20px 20px 0 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Add a subtle divider */
 }
-.card-header{
-	border-radius: 15px 15px 0 0 !important;
-	border-bottom: 0 !important;
-}
-.card-footer{
-border-radius: 0 0 15px 15px !important;
-	border-top: 0 !important;
+.card-footer {
+    border-radius: 0 0 20px 20px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Add a subtle divider */
+    padding: 15px; /* Increase padding for better usability */
 }
 .container{
 	align-content: center;
@@ -127,14 +130,16 @@ border-radius: 0 0 15px 15px !important;
 	margin-bottom: auto;
 	margin-left: 15px;
 }
-.user_info span{
-	font-size: 20px;
-	color: white;
+.user_info span {
+    font-size: 22px; /* Slightly larger font */
+    font-weight: bold; /* Make the username stand out */
+    color: #fff; /* Keep it white for contrast */
 }
-.user_info p{
-	font-size: 10px;
-	color: rgba(255,255,255,0.6);
+.user_info p {
+    font-size: 12px; /* Slightly larger */
+    color: rgba(255, 255, 255, 0.7); /* Slightly higher contrast */
 }
+
 .video_cam{
 	margin-left: 50px;
 	margin-top: 5px;
@@ -163,6 +168,12 @@ border-radius: 0 0 15px 15px !important;
 	padding: 10px;
 	position: relative;
 }
+
+.msg_cotainer, .msg_cotainer_send {
+    font-size: 14px; /* Larger font for messages */
+    line-height: 1.5; /* Better spacing between lines */
+}
+
 .msg_time{
 	position: absolute;
 	left: 0;

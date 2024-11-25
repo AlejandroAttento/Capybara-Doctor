@@ -3,7 +3,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 def vdb_check_duplication(chunk, index, embeddings, threshold=0.99):
-    duplicated = index.query(vector=embeddings.embed_query(chunk), top_k=1).get("matches")[0].get("score") >= threshold
+    try:
+        duplicated = index.query(vector=embeddings.embed_query(chunk), top_k=1).get("matches")[0].get("score") >= threshold
+    except IndexError:
+        duplicated = False
     return chunk if not duplicated else None
     
 def discard_duplicated_chunks(data_chunks, index, embeddings):
