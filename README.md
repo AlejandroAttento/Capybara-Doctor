@@ -66,6 +66,33 @@ Follow these steps to set up and run Capybara Doctor:
    Open [http://127.0.0.1:8080/](http://127.0.0.1:8080/) in your browser to interact with the bot.  
    ⚠️ *The first run may take longer as the models and tokenizer are downloaded.*
 
+## Project Structure
+The repository is organized as follows:
+
+- **`data/`**: Contains the PDFs used for the Retrieval-Augmented Generation (RAG) process. Add your medical books here to enhance the chatbot's knowledge base.
+
+- **`img/`**: Stores images used in the `README.md` file or other documentation.
+
+- **`logs/`**: Directory where all the logs generated during the execution of the project are saved.
+
+- **`model/`**: Contains the downloaded models once they are initialized and set up locally.
+
+- **`src/`**: Contains all the source code files used in the project. This directory is installed as a local library.
+
+- **`static/`**: Holds resources used by the front-end, such as CSS, JavaScript, or other static assets.
+
+- **`templates/`**: Stores the HTML templates used by the front-end.
+
+- **`app.py`**: The main executable file to start the chatbot.
+
+- **`config.json`**: The configuration file for the project. Use this to customize models, parameters, and settings.
+
+- **`logger.py`**: Provides logging functionalities for debugging and tracking execution.
+
+- **`setup.py`**: Configuration to install the `src/` directory as a local library.
+
+- **`store_index.py`**: Executable file to set up the Vector Database with Pinecone.
+
 ## ⚙️ Project Customization
 The chatbot can be easily customized by editing the config.json file. Some configurable parameters include:
 
