@@ -121,6 +121,11 @@ To update the vector database, use the following commands:
    ```
    Use this if you’ve changed the embedding model or removed files. It will drop the existing index and create a fresh one.
 
+## 🖥️ Monitoring
+To monitor the memory usage or your model using your GPU use the `watch nvidia-smi` command if you use Linux or macOS or the [task manager](https://www.youtube.com/watch?v=TD1DANRcch4&t=49s) if you use Windows.
+
+![image](img/nvidia-smi.png) 
+
 ## 💡 Notes:
 * A GPU (RTX 4070 Ti or better) is recommended for optimal performance.
 * Running the chatbot locally ensures privacy and control over data.
