@@ -1,5 +1,5 @@
 {
-    "llm_model_repository_name": "Qwen/Qwen2.5-1.5B",
+    "llm_model_repository_name": "Qwen/Qwen2.5-1.5B-Instruct",
     "embedding_model_name": "sentence-transformers/all-MiniLM-L6-v2",
     "data_directory": "data/",
     "llm_model_directory": "model/",

@@ -27,6 +27,7 @@ def hf_download_model(config_manager: ConfigManager):
             torch_dtype=torch.bfloat16,
             trust_remote_code=True,
             token=token,
+            max_memory={0: "8GiB", "cpu": "8GiB"}
         )
 
         logging.info("Model downloaded successfully.")
