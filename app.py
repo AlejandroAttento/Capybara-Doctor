@@ -5,7 +5,7 @@ from flask_session import Session
 from langchain.chains import create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.memory import ConversationBufferWindowMemory
-from langchain.memory.chat_message_histories import ChatMessageHistory
+from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_pinecone import PineconeVectorStore
 from langchain.chains import create_retrieval_chain

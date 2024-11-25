@@ -82,3 +82,5 @@ if __name__ == "__main__":
         create_index()
 
         update_index(False)
+    else:
+        raise ValueError(f"Invalid command: {args.command}")
