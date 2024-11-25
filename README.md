@@ -15,6 +15,18 @@
 
 All models are sourced from [Hugging Face](https://huggingface.co/) and are integrated using [LangChain](https://www.langchain.com/) and [LangSmith](https://smith.langchain.com/) for enhanced monitoring and visibility.  
 
+## 🕹️ Demo  
+
+Experience the capabilities of **Capybara Doctor**, a chatbot designed to answer your medical questions based on the information provided in the uploaded PDFs.
+
+⚠️ **Important Notice:**  
+This chatbot is a demonstration of a potential use case for a Retrieval-Augmented Generation (RAG)-based chatbot. **It is NOT a substitute for professional medical advice.**  
+Any medical statements made by the LLM should always be reviewed and validated by a qualified healthcare professional before taking any action.
+
+### Example Interaction:  
+Below is a sample interaction showcasing the chatbot in action:  
+![Demo Screenshot](img/demo1.png)  
+
 ## 🛠️ Project Architecture  
 The project is divided into three main components:  
 1. **Vector Database Setup**: Prepares the Pinecone vector database with medical knowledge.  
