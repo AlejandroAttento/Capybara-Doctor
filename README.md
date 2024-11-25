@@ -26,29 +26,39 @@ Follow these steps to set up and run Capybara Doctor:
 
 1. **Clone the Repository**  
    ```bash
-   git clone https://github.com/AlejandroAttento/Medical-LLM-using-Llama3/tree/master
+   git clone https://github.com/AlejandroAttento/Capybara-Doctor
    ```
-2. **Create a Virtual Environment**
+2. **Create a Virtual Environment**  
+   For Linux
    ```
    python3 -m venv .venv
    ```
-3. **Install Dependencies**
+3. **Activate Virtual Environment**  
+   For Linux and macOS
+   ```
+   source .venv/bin/activate
+   ```
+   For Windows
+   ```
+   .venv\Scripts\activate
+   ```
+4. **Install Dependencies**
    ```
    pip install -r requirements.txt
    ```
-4. **Set up Environment Variables**  
+5. **Set up Environment Variables**  
    Create a `.env` file in the root directory with the following values:
    * **PINECONE_TOKEN**: API token from [Pinecone](https://www.pinecone.io/).
    * **HUGGINGFACE_TOKEN**: API token from [Hugging Face](https://huggingface.co/).
    * **FLASK_APP_KEY**: A secret key (any random string) for Flask session signing.
    * **LANGCHAIN_API_KEY**: API key for [LangChain](https://www.langchain.com/).
-5. **Initialize the Vector Database**
+6. **Initialize the Vector Database**
    Process and upload text data to the vector database:
    ```
    python3 ./store_index.py
    ```
    *Feel free to add more medical books to the data/ folder to enhance the chatbot’s knowledge.*
-6. **Run the Chatbot**  
+7. **Run the Chatbot**  
    Start the Flask server:
    ```
    python3 ./app.py
@@ -70,14 +80,14 @@ The chatbot can be easily customized by editing the config.json file. Some confi
     "llm_model_repository_name": "Qwen/Qwen2.5-1.5B-Instruct",
     "embedding_model_name": "sentence-transformers/all-MiniLM-L6-v2",
     "data_directory": "data/",
-    "llm_model_directory": "model/",
+    "model_directory": "model/",
     "pinecone": {
-        "index_name": "medical-llm-using-llama3",
+        "index_name": "capybara-doctor",
         "dimensions": 384,
         "metric": "cosine"
     },
     "text_split": {
-        "chunk_size": 750,
+        "chunk_size": 500, 
         "chunk_overlap": 50
     },
     "model_params": {
@@ -116,4 +126,4 @@ To update the vector database, use the following commands:
 * Running the chatbot locally ensures privacy and control over data.
 
 ## 🤝 Contributing
-Feel free to fork the repository and contribute! Suggestions, feature requests, and bug reports are welcome via [issues](https://github.com/AlejandroAttento/Medical-LLM-using-Llama3/issues) or reach me out at [Linkedin](https://www.linkedin.com/in/alejandro-daniel-attento/).
+Feel free to fork the repository and contribute! Suggestions, feature requests, and bug reports are welcome via [issues](https://github.com/AlejandroAttento/Capybara-Doctor/issues) or reach me out at [Linkedin](https://www.linkedin.com/in/alejandro-daniel-attento/).

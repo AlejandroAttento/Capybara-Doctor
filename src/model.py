@@ -17,7 +17,7 @@ def hf_download_model(config_manager: ConfigManager):
             raise ValueError("HUGGINGFACE_TOKEN is not set.")
 
         repository_name = config_manager.get_config("llm_model_repository_name")
-        model_directory = config_manager.get_config("llm_model_directory")
+        model_directory = config_manager.get_config("model_directory")
 
         logging.info(f"Repository Name: {repository_name}")
         logging.info(f"Model Directory: {model_directory}")
@@ -51,7 +51,7 @@ def hf_download_tokenizer(config_manager: ConfigManager):
 
 
         repository_name = config_manager.get_config("llm_model_repository_name")
-        model_directory = config_manager.get_config("llm_model_directory")
+        model_directory = config_manager.get_config("model_directory")
 
         logging.info(f"Repository Name: {repository_name}")
         logging.info(f"Model Directory: {model_directory}")
@@ -91,7 +91,7 @@ def load_local_model(config_manager: ConfigManager, tokenizer, verbose: bool = F
     try:
         pipeline = transformers.pipeline(
             "text-generation",
-            model=config_manager.get_config("llm_model_directory"),
+            model=config_manager.get_config("model_directory"),
             tokenizer=tokenizer,
             torch_dtype=torch.bfloat16,
             trust_remote_code=True,

@@ -13,7 +13,6 @@ from pinecone import Pinecone
 from src.helper import ConfigManager, serialize_messages, deserialize_messages, remove_all_in_directory
 from src.model import hf_download_model, hf_download_tokenizer, load_local_model, hf_load_embeddings
 from src.prompt import qa_prompt, output_cleanup_prompt
-from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone
 import logger # To initialize and generate logs
 
@@ -23,7 +22,7 @@ config_manager = ConfigManager("config.json")
 app_key = os.environ["FLASK_APP_KEY"]
 
 # Remove existing model directories
-remove_all_in_directory(config_manager.get_config("llm_model_directory"))
+remove_all_in_directory(config_manager.get_config("model_directory"))
 
 # Download and load the model, tokenizer, and embeddings
 model = hf_download_model(config_manager)

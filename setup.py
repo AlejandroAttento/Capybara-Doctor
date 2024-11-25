@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='Medical LLM using Llama3',
+    name='Capybara Doctor',
     version='1.0.0',
     author="Alejandro Daniel Attento",
     author_email="alejandro.attento@gmail.com",

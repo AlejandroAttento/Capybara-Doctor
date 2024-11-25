@@ -2,14 +2,14 @@
     "llm_model_repository_name": "Qwen/Qwen2.5-1.5B-Instruct",
     "embedding_model_name": "sentence-transformers/all-MiniLM-L6-v2",
     "data_directory": "data/",
-    "llm_model_directory": "model/",
+    "model_directory": "model/",
     "pinecone": {
-        "index_name": "medical-llm-using-llama3",
+        "index_name": "capybara-doctor",
         "dimensions": 384,
         "metric": "cosine"
     },
     "text_split": {
-        "chunk_size": 750, 
+        "chunk_size": 500, 
         "chunk_overlap": 50
     },
     "model_params": {
