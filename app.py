@@ -21,9 +21,6 @@ import logger # To initialize and generate logs
 config_manager = ConfigManager("config.json")
 app_key = os.environ["FLASK_APP_KEY"]
 
-# Remove existing model directories
-remove_all_in_directory(config_manager.get_config("model_directory"))
-
 # Download and load the model, tokenizer, and embeddings
 model = hf_download_model(config_manager)
 tokenizer = hf_download_tokenizer(config_manager)
