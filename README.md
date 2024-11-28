@@ -63,7 +63,7 @@ Follow these steps to set up and run Capybara Doctor:
    * **PINECONE_TOKEN**: API token from [Pinecone](https://www.pinecone.io/).
    * **HUGGINGFACE_TOKEN**: API token from [Hugging Face](https://huggingface.co/).
    * **FLASK_APP_KEY**: A secret key (any random string) for Flask session signing.
-   * **LANGCHAIN_API_KEY**: API key for [LangChain](https://www.langchain.com/).
+   * **LANGCHAIN_API_KEY**: API key for, used for LangSmith [LangChain](https://www.langchain.com/).
 6. **Initialize the Vector Database**
    Process and upload text data to the vector database:
    ```
